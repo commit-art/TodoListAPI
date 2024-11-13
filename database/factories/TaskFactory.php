@@ -27,7 +27,7 @@ class TaskFactory extends Factory
                 ->first(),
             'title' => fake()->name(),
             'description' => fake()->text(1000),
-            'priority' => fake()->randomElement(TaskPriority::getValues()),
+            'priority' => fake()->randomElement(TaskPriority::cases()),
             'created_at' => fake()->dateTimeBetween('-1 years'),
             'completed_at' => fake()->randomElement([true, false]) ?
                 fake()->dateTimeBetween('-1 years') : null
