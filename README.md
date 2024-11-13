@@ -35,19 +35,19 @@ Also task can have subtasks, level of subtask is not limited
 
 1. Clone the repository:
     ```sh
-    git clone git@github.com:stryker-code/Todo-List-API.git
+    git clone git@github.com:commit-art/TodoListAPI.git
     ```
 2. Run dev environment
     ```sh
-    docker-compose up -d
+    sudo docker-compose up -d
     ```
 
 3. Install dependencies
     ```sh
-    docker exec php-fpm_todo_list composer install
+    sudo docker exec php-fpm_todo_list composer install
     ```
 
-4. Run database migrations
+4. Run database migrations & seeders
    ```env
     DB_CONNECTION=mysql
     DB_HOST=mysql
@@ -57,21 +57,16 @@ Also task can have subtasks, level of subtask is not limited
     DB_PASSWORD=root
    ``` 
    ```sh
-    docker exec php-fpm_todo_list php artisan migrate
-    ```
+    sudo docker exec php-fpm_todo_list php artisan migrate --seed
+   ```
 
-5. Run seeders
+5. App key generate
     ```sh
-    docker exec php-fpm_todo_list php artisan db:seed
+    sudo docker exec php-fpm_todo_list php artisan key:generate
     ```
-
-6. App key generate
+6. Update configs
     ```sh
-    docker exec php-fpm_todo_list php artisan key:generate
-    ```
-7. Update configs
-    ```sh
-    docker exec php-fpm_todo_list php artisan optimize:clear
+    sudo docker exec php-fpm_todo_list php artisan optimize:clear
     ```
 
 
