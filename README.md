@@ -73,5 +73,5 @@ Also task can have subtasks, level of subtask is not limited
 ## Running tests
 
 ```sh
-docker exec php-fpm_todo_list php artisan test
+sudo docker exec php-fpm_todo_list php artisan test
 ```

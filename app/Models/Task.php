@@ -33,4 +33,10 @@ class Task extends Model
     {
         return $this->hasMany(static::class, 'parent_id');
     }
+
+    public function scopeHasActiveSubtasks(): bool
+    {
+        return (bool)$this->hasMany(static::class, 'parent_id')
+            ->whereNull('completed_at')->count();
+    }
 }

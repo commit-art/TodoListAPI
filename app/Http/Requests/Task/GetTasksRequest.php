@@ -26,11 +26,11 @@ class GetTasksRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'search' => 'nullable|string|max:1000',
+            'search' => ['nullable','string','max:1000'],
             'priority' => [new Enum(TaskPriority::class)],
             'status' => [new Enum(TaskStatus::class)],
-            'created_at' => 'nullable|in:asc,desc',
-            'completed_at' => 'nullable|in:asc,desc',
+            'created_at' => ['nullable','in:asc,desc'],
+            'completed_at' => ['nullable','in:asc,desc'],
         ];
     }
 }

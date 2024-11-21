@@ -2,13 +2,12 @@
 
 namespace App\Services;
 
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class UserService
 {
-    public function create(array $data): UserResource
+    public function create(array $data): User
     {
         return User::create($data);
     }

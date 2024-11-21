@@ -26,8 +26,8 @@ class CreateTokenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required',
+            'email' => ['required','email'],
+            'password' => ['required', 'string', 'min:6', 'max:8'],
         ];
     }
 
