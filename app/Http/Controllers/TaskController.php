@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\TaskRepositoryInterface;
-use App\Contracts\TaskServiceInterface;
 use App\Http\Requests\Task\GetTasksRequest;
 use App\Http\Requests\Task\StoreTaskRequest;
 use App\Http\Requests\Task\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use App\Services\TaskService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -21,10 +20,10 @@ class TaskController extends Controller
      */
     public function index(
         GetTasksRequest $request,
-        TaskRepositoryInterface $repository
+        TaskService $service
     ): AnonymousResourceCollection
     {
-        $data = $repository->filter($request);
+        $data = $service->get($request);
 
         return TaskResource::collection($data)
             ->additional(['count' => $data->count()]);
@@ -67,7 +66,7 @@ class TaskController extends Controller
      */
     public function update(
         UpdateTaskRequest $request,
-        TaskServiceInterface $service,
+        TaskService $service,
         Task $task
     ): JsonResponse
     {
