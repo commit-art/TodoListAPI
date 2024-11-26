@@ -1,0 +1,256 @@
+openapi: 3.0.0
+info:
+  title: Todo lists API
+  version: 1.0.0
+servers:
+  - url: http://{{url}}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+tags:
+  - name: AUTH
+  - name: User
+  - name: Tasks
+paths:
+  /tokens/create:
+    post:
+      tags:
+        - AUTH
+      summary: Create token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: test@mail.test
+                password: '12345678'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tokens/revoke_all:
+    post:
+      tags:
+        - AUTH
+      summary: Revoke all tokens
+      requestBody:
+        content: {}
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/create:
+    post:
+      tags:
+        - User
+      summary: Create user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ApiUser
+                email: test@mahfioff1l
+                password: '12345678'
+                date_of_birth: '2023-09-11'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user:
+    get:
+      tags:
+        - User
+      summary: Get user
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tasks/:
+    get:
+      tags:
+        - Tasks
+      summary: Get tasks
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: completed_at
+          in: query
+          schema:
+            type: string
+          example: asc
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tasks/{id}:
+    get:
+      tags:
+        - Tasks
+      summary: Get task
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Tasks
+      summary: Update task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Updated
+                description: >-
+                  Updated characterization and documentation of tasks or
+                  subtasks and execution conditions
+                priority: 5
+                status: 1
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - Tasks
+      summary: Set task to DONE
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                status: 1
+                test: 4
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Tasks
+      summary: Delete task
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tasks:
+    post:
+      tags:
+        - Tasks
+      summary: Create task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: MyTASK
+                description: >-
+                  Systematic characterization and documentation of tasks or
+                  subtasks and execution conditions
+                priority: '1'
+                parent_id: '20 - optional'
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
