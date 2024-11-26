@@ -17,7 +17,7 @@ class Task extends Model
         'description',
         'priority',
         'status',
-        'completed_at'
+        'completed_at',
     ];
 
     public function user(): BelongsTo
@@ -27,7 +27,6 @@ class Task extends Model
 
     /**
      * Subtasks associated with task.
-     *
      */
     public function subtasks(): HasMany
     {
@@ -36,7 +35,7 @@ class Task extends Model
 
     public function scopeHasActiveSubtasks(): bool
     {
-        return (bool)$this->hasMany(static::class, 'parent_id')
+        return (bool) $this->hasMany(static::class, 'parent_id')
             ->whereNull('completed_at')->count();
     }
 }

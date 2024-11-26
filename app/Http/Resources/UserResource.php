@@ -14,14 +14,14 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-         return [
-             'name' => $this->name,
-             'email' => $this->email,
-             'password' =>  $this->password,
-             'updated_at' => $this->updated_at,
-             'todo' => $this->tasks->map(function ($task) {
-                 return $task->title;
-             })
-         ];
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password,
+            'updated_at' => $this->updated_at,
+            'todo' => $this->tasks->map(function ($task) {
+                return $task->title;
+            }),
+        ];
     }
 }

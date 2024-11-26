@@ -10,7 +10,7 @@ class SanctumApiService
     public function createToken(User $user, string $userAgent): array
     {
         return [
-            'token' => $user->createToken($userAgent)->plainTextToken
+            'token' => $user->createToken($userAgent)->plainTextToken,
         ];
     }
 

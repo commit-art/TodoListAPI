@@ -21,8 +21,7 @@ class TaskController extends Controller
     public function index(
         GetTasksRequest $request,
         TaskService $service
-    ): AnonymousResourceCollection
-    {
+    ): AnonymousResourceCollection {
         $data = $service->get($request);
 
         return TaskResource::collection($data)
@@ -42,7 +41,7 @@ class TaskController extends Controller
             [
                 'id' => $task->id,
                 'parent_id' => $task->parent_id,
-                'message' => 'Task has been created'
+                'message' => 'Task has been created',
             ],
             Response::HTTP_CREATED);
     }
@@ -68,8 +67,7 @@ class TaskController extends Controller
         UpdateTaskRequest $request,
         TaskService $service,
         Task $task
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $this->authorize('update', $task);
 
         $service->update($request, $task);

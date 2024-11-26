@@ -24,7 +24,7 @@ class TaskResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'completed_at' => $this->completed_at,
-            'subtasks' => static::collection($this->subtasks)
+            'subtasks' => static::collection($this->subtasks),
         ];
     }
 }

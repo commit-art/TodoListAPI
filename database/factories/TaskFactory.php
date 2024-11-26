@@ -30,7 +30,7 @@ class TaskFactory extends Factory
             'priority' => fake()->randomElement(TaskPriority::cases()),
             'created_at' => fake()->dateTimeBetween('-1 years'),
             'completed_at' => fake()->randomElement([true, false]) ?
-                fake()->dateTimeBetween('-1 years') : null
+                fake()->dateTimeBetween('-1 years') : null,
         ];
     }
 }

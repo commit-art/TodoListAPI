@@ -46,8 +46,7 @@ class UpdateTaskRequest extends FormRequest
     {
         $task = $this->route()->parameter('task');
 
-        if ($task->hasActiveSubtasks())
-        {
+        if ($task->hasActiveSubtasks()) {
             throw new Exception(
                 'Parent Task has active subtasks. You should done them first.'
             );
